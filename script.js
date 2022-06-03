@@ -24,8 +24,8 @@ sqColor.oninput = (e) => setCurrentColor(e.target.value)
 colorBtn.onclick = () => setCurrentMode('color')
 rainbowBtn.onclick = () => setCurrentMode('rainbow')
 eraserBtn.onclick = () => setCurrentMode('eraser')
-gridLineBtn.onclick = () => toggleGridLine()
-clearBtn.onclick = () => clearGrid()
+gridLineBtn.onclick = (e) => toggleGridLine()
+clearBtn.onclick = () => reloadGrid()
 gridSizeSlider.onmousemove = (e) => updateSizeValue(e.target.value)
 gridSizeSlider.onchange = (e) => changeSize(e.target.value)
 
@@ -50,21 +50,31 @@ function changeSize(value) {
     setCurrentSize(value)
     updateSizeValue(value)
     clearGrid()
+    genSquareDiv(currentSize)
 }
 
 function updateSizeValue(value) {
     gridSize.textContent = `Grid Size: ${value} x ${value}`
 }
+ 
+function reloadGrid() {
+    clearGrid()
+    genSquareDiv(currentSize)
+}
 
-function genSquareDiv(currentSize) {
-    for (let i = 0; i < currentSize; i++) { //row
+function clearGrid() {
+    gridContainer.textContent = ''
+ }
+
+function genSquareDiv(size) {
+    for (let i = 0; i < size; i++) { //row
         const rowDiv = document.createElement("div");
         rowDiv.classList.add('row-div')
         rowDiv.addEventListener('mouseover', changeColor)
         rowDiv.addEventListener('mousedown', changeColor)
         gridContainer.appendChild(rowDiv)
 
-        for (let i = 0; i < currentSize; i++) { //squares
+        for (let i = 0; i < size; i++) { //squares
             const sqDiv = document.createElement("div");
             sqDiv.classList.add('sq-div')
             sqDiv.addEventListener('mouseover', changeColor)
@@ -75,11 +85,11 @@ function genSquareDiv(currentSize) {
 }
 
 function toggleGridLine(){
-   // document.querySelectorAll('.sq-div').style.backgroundColor = '#ffffff'
-}
-
-function clearGrid() {
-   // document.querySelectorAll('.sq-div').style.backgroundColor = '#ffffff'
+    let sqDivs = document.querySelectorAll('.sq-div')
+    sqDivs.forEach(sqDiv => {
+        sqDiv.classList.toggle("sq-div-off")
+    })
+    gridLineBtn.classList.remove('active')
 }
 
 function changeColor(e) {
@@ -114,10 +124,7 @@ function activateBtn(newMode) {
     }
   }
 
-  window.onload = () => {
-      genSquareDiv(defaultSize)
-      activateBtn(defaultMode)
+window.onload = () => {
+    genSquareDiv(defaultSize)
+    activateBtn(defaultMode)
   }
-/* 
-
-*/

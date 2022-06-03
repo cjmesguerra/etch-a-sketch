@@ -98,30 +98,36 @@ button:hover {
 /* Square Div */
 .grid-container {
     display: flex;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     margin: 1em;
     align-self: center;
     border: 5px solid red;
 }
 
 .row-div {
-    flex: 1 1 0;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+    min-height: 600px;
+    max-height: 600px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .row-div {
-        display: flex;
+        display: block;
     }
 }
 
-.row-div > * {
-    flex: 1;
-    padding: 1em;
+.sq-div {
+    outline: 1px solid black;
+    padding: .5em;
+    background: whitesmoke;
 }
 
-.sq-div {
-    border: 1px solid black;
+.sq-div-off {
+    outline: 0px solid black;
+    padding: .5em;
     background: whitesmoke;
 }
 
