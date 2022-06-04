@@ -1,7 +1,7 @@
 /* UI Declarations */
 const defaultColor = '#04AA6D'
 const defaultMode = 'color'
-const defaultSize = 8
+const defaultSize = 16
 
 let currentColor = defaultColor
 let currentMode = defaultMode
@@ -67,21 +67,24 @@ function clearGrid() {
  }
 
 function genSquareDiv(size) {
-    for (let i = 0; i < size; i++) { //row
-        const rowDiv = document.createElement("div");
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+    gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`
+
+    for (let i = 0; i < size * size; i++) {
+        const sqDiv = document.createElement("div");
+        sqDiv.classList.add('sq-div')
+        sqDiv.addEventListener('mouseover', changeColor)
+        sqDiv.addEventListener('mousedown', changeColor)
+        gridContainer.appendChild(sqDiv)
+    }
+       /* const rowDiv = document.createElement("div");
         rowDiv.classList.add('row-div')
+        rowDiv.textContent = 'test'
         rowDiv.addEventListener('mouseover', changeColor)
         rowDiv.addEventListener('mousedown', changeColor)
-        gridContainer.appendChild(rowDiv)
+        gridContainer.appendChild(rowDiv) */
 
-        for (let i = 0; i < size; i++) { //squares
-            const sqDiv = document.createElement("div");
-            sqDiv.classList.add('sq-div')
-            sqDiv.addEventListener('mouseover', changeColor)
-            sqDiv.addEventListener('mousedown', changeColor)
-            rowDiv.appendChild(sqDiv)
-        }
-    }
+       /* for (let i = 0; i < size; i++) { *///squares
 }
 
 function toggleGridLine(){

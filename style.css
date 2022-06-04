@@ -25,6 +25,12 @@ body {
     justify-content: center;
 }
 
+@media (max-width: 650px) {
+    .container {
+        flex-direction: column-reverse;
+    }
+}
+
 /* Menu */
 .menu-container {
     display: flex;
@@ -39,18 +45,19 @@ body {
 .sqColor {
     border-radius: .5rem;
     height: 5em;
-    width: 100%;
+    width: 150px;
 }
 
 button {
     border: 1px solid black;
     border-radius: .5rem;
-    padding: .8rem;
-    width: 100%;
+    padding: 1em;
+    width: 150px;
     font-size: 1rem;
 }
 
 button.active {
+    border: 1px solid #e4e1e1;
     background-color: #414141;
     color: #e4e1e1;
 }
@@ -62,13 +69,13 @@ button:hover {
 }
 
 .gridSize {
-    font-size: 1rem;
+    font-size: 15px;
 }
 
 .gridSizeSlider {
     -webkit-appearance: none;
     appearance: none;
-    width: 100%;
+    width: 150px;
     border-radius: .5rem;
     background: #ffff;
     opacity: 0.7;
@@ -83,34 +90,37 @@ button:hover {
 .gridSizeSlider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 1.5em;
-    height: 1.5em;
+    width: 20px;
+    height: 20px;
     border-radius: .3rem;
     background: #04AA6D;
 }
 
 .gridSizeSlider::-moz-range-thumb {
-    width: 1.5em;
-    height: 1.5em;
+    width: 20px;
+    height: 20px;
     background: #04AA6D;
 }
 
 /* Square Div */
 .grid-container {
-    display: flex;
+    display: grid;
     width: 500px;
     height: 500px;
-    margin: 1em;
     align-self: center;
-    border: 5px solid red;
+    border: 5px solid #333333;
+}
+@media (max-width: 500px) {
+    .grid-container {
+        display: block;
+    }
 }
 
+/*
 .row-div {
-    flex-grow: 1;
-    flex-basis: 0;
-    min-width: 0;
-    min-height: 600px;
-    max-height: 600px;
+    outline: 1px solid black;
+    padding: .5em;
+    background: whitesmoke;
 }
 
 @media (max-width: 500px) {
@@ -118,17 +128,18 @@ button:hover {
         display: block;
     }
 }
+*/
 
 .sq-div {
     outline: 1px solid black;
-    padding: .5em;
     background: whitesmoke;
+    user-select: none;
 }
 
 .sq-div-off {
     outline: 0px solid black;
-    padding: .5em;
     background: whitesmoke;
+    user-select: none;
 }
 
 .sq-div:hover {
